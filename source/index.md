@@ -31,7 +31,7 @@ upload your own photos and video to see what's in them.
 First [create a developer account](http://developer.clarifai.com/accounts/signup/).
 
 Once you're signed in, create an
-[Application](https://developer.clarifai.com/docs/applications). The application keys
+[Application](#applications). The application keys
 (Client ID and Client Secret) created during this step will later by copied into your client code.
 
 Time to start coding! The easiest way to get started is by using the clients available on the
