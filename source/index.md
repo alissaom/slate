@@ -50,12 +50,18 @@ After setting up the client, check out our quick
 # API Clients
 
 While the API can be accessed directly through the RESTful HTTP endpoints, several
-language-specific clients are available for easier integration.  These include:
+language-specific clients are available for easier integration.
+
+Official clients:
 
 * [Python](https://github.com/Clarifai/Clarifai_py) (also our reference client)
 * [Java](https://github.com/Clarifai/clarifai-api-java)
 * [Nodejs](https://github.com/Clarifai/Clarifai_nodejs)
-* [Swift](https://github.com/yazoglr/Claire) (Draft in development)
+
+Contributed clients:
+
+* [Swift](https://github.com/yazoglr/Claire)
+* [Ruby](https://github.com/krismartin/clarifai-ruby)
 
 Client-specific documentation is available in each repo, but the
 overall concepts regarding accessing the API and creating applications remains the same as if you
