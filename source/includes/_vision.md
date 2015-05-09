@@ -25,6 +25,38 @@ curl -H "Authorization: Bearer <access_token>" --data-urlencode "url=http://www.
 curl -H "Authorization: Bearer <access_token>" -F "encoded_data=@/path/to/example.jpeg" -F "encoded_data=@/path/to/another-img.jpeg" https://api.clarifai.com/v1/tag/
 ```
 
+`GET https://api.clarifai.com/v1/tag/`
+
+Tag an image with recognized objects and descriptive tags.  Returns tags and associated 
+confidences (probabilities).
+
+## Request parameters
+
+Parameter | Description
+--------- | -----------
+url | URL of the content to be recognized.
+model | Optional. Specify the type of model to process the images with. Currently must be 'default'.
+local_id | User-supplied identifier, returned with the result for each image for convenience when associating results with requests. If not supplied, the request URL is returned when available.
+select_classes | Optional. Comma-separated list of class names (string).  
+Used to select a specific set of recognized tags to be returned in the response.  See [Selecting tags](#selecting-tags) for details.
+
+## Selecting tags
+
+> Get predictions for a specific set of tags using the `select_classes` request param:
+
+```shell
+curl -H "Authorization: Bearer <access_token>" --data-urlencode "url=http://www.clarifai.com/img/metro-north.jpg"  -d "select_classes=smile,frowning,laughing" https://api.clarifai.com/v1/tag/
+```
+
+Normally we return the top recognized tags by predicted confidence.
+For some applications, the top tags are less useful than getting predictions for a specific set
+of tags.  We support this using the `select_classes` request parameter.
+
+When `select_classes` is provided in the request, only results for the requested classes are
+returned.  
+
+
+## Response
 
 > Example response with a single image.
 
@@ -91,23 +123,6 @@ curl -H "Authorization: Bearer <access_token>" -F "encoded_data=@/path/to/exampl
  "status_msg": "All images in request have completed sucessfully."
 }
 ```
-
-### HTTP Request
-
-`GET https://api.clarifai.com/v1/tag/`
-
-Tag an image with recognized objects and descriptive tags.  Returns tags and associated 
-confidences (probabilities).
-
-### Request parameters
-
-Parameter | Description
---------- | -----------
-url | URL of the content to be recognized.
-model | Optional. Specify the type of model to process the images with. Currently must be 'default'.
-local_id | User-supplied identifier, returned with the result for each image for convenience when associating results with requests. If not supplied, the request URL is returned when available.
-
-### Response
 
 Image and video recognition results are returned in the `results` array,
 one result per image. 

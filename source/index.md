@@ -19,7 +19,7 @@ search: true
 
 # Introduction
 
-The Clarifai API is an image and video recognition service.
+The Clarifai API is REST-ful HTTP service that provides image and video recognition.
 
 The best way to understand the power of our API is to see it in action with our
 [demo](http://clarifai.com) where you can
@@ -41,6 +41,11 @@ other languages will be added soon.
 
 After setting up the client, check out our quick
 [Tutorial](https://developer.clarifai.com/docs/tutorial).
+
+## API reference
+
+* [Tags](#tags): the main image recognition endpoint.
+* [Feedback](#feedback): provide feedback on our recognition results.
 
 # API Clients
 
