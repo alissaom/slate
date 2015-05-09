@@ -190,28 +190,38 @@ When using either GET or POST requests, the Authorization header must be provide
 
 	  "Authorization: Bearer <access_token>"
 
-# Data Formats
+## Sending image and video
 
-The Clarifai API supports multiple input formats for data as described below.
+There are two ways to send image or video content to the API: by URL and by uploading content
+bytes.
 
-## url
+### URL
 
-If you would like to process an image that is hosted at an existing publically accessible url,
-then you can simply provide that url as an image input format. This url is downloaded on our servers
-and then processed, therefore it must contain valid image data and be accessible to public servers.
-If there in an error downloading the image or the format is not correct, an error response will be
-returned. Note: the url must be url-encoded in many cases. This is to ensure all the necessary url
-parameters of the original url are passed correctly to the server so that the data can be
-downloaded.
+The simplest way to send us content is via a public URL.  Our API servers will fetch the image
+or video at the given URL.  If the content cannot be fetched, or the image or video cannot
+be decoded, an error will be returned.
 
-## encoded_data
+<aside class="notice">
+When sending URLs via http GET, the url must be url-encoded to escape special characters in the
+URL.
+</aside>
 
-This format is for passing the raw bytes of a compressed image (such as JPEG or PNG) with the
-request. This is convenient for processing local files with the API by transferring image bytes
-directly in the request. This input is decoded as a string of bytes on the server side for several
-supported image formats. This input format is ONLY supported by POST methods because the raw bytes
-of an image may not be encodable in a GET method. The encoded_data should be send via a
-multipart-form POST for efficiency reasons.
+### encoded_data
+
+When content is not available at a public URL, you can send image or video files directly in the
+API request using the `encoded_data` request parameter.
+
+Supported formats include JPEG, PNG, and GIF for images, and MP4 and motion GIF for video.
+
+There are two ways to send `encoded_data` in the POST request:
+
+* Multi-part MIME.  One or more `encoded_data` fields are attached to the request, separated by
+MIME boundaries.  See the reference client for example implementations.
+
+* base64-encoded bytes in the JSON request body.  Base64 encoding inflates the image size, so
+this method is not recommended.
+
+Sending image bytes via http GET is not supported, you must use POST.
 
 <aside class="warning">
 Warning: Using encoded_data with JSON
@@ -223,9 +233,6 @@ on both the client/server as well as additional network traffic. Therefore, we s
 sending encoded_data as a multipart-form as described above. We may not support JSON encoded_data
 uploads in the future.
 </aside>
-
-Parameter | Description
---------- | -----------
 
 # Responses
 
@@ -260,7 +267,10 @@ accumulated.
 
 ## Rate Limits
 
-In addition to your overall usage, there are rate limits in place to ensure fair use of our service.
-You can view these on your Account Usage Page. If you exceed the limits defined there you will be
-throttled to prevent overuse of the API and allow others to benefit from the service.
+In addition to your overall usage, there are rate limits in place to control use of our service.
+You can view these on your Account Usage Page.
+
+If you exceed the rate limits on your account, the API will return an HTTP 429 error, and set the
+`X-Throttle-Wait-Seconds` HTTP response header.  Clients should wait for the specified number of
+seconds before attempting another request.
 
