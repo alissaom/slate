@@ -48,7 +48,7 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>The Clarifai API is an image and video recognition service.</p>
+<p>The Clarifai API is REST-ful HTTP service that provides image and video recognition.</p>
 
 <p>The best way to understand the power of our API is to see it in action with our
 <a href="http://clarifai.com">demo</a> where you can
@@ -69,6 +69,13 @@ other languages will be added soon.</p>
 
 <p>After setting up the client, check out our quick
 <a href="https://developer.clarifai.com/docs/tutorial">Tutorial</a>.</p>
+
+<h2 id="api-reference">API reference</h2>
+
+<ul>
+<li><a href="#tags">Tags</a>: the main image recognition endpoint.</li>
+<li><a href="#feedback">Feedback</a>: provide feedback on our recognition results.</li>
+</ul>
 
 <h1 id="api-clients">API Clients</h1>
 
@@ -441,6 +448,56 @@ seconds before attempting another request.</p>
 <pre class="highlight shell"><code>curl -H <span class="s2">"Authorization: Bearer &lt;access_token&gt;"</span> -F <span class="s2">"encoded_data=@/path/to/example.jpeg"</span> -F <span class="s2">"encoded_data=@/path/to/another-img.jpeg"</span> https://api.clarifai.com/v1/tag/
 </code></pre>
 
+<p><code class="prettyprint">GET https://api.clarifai.com/v1/tag/</code></p>
+
+<p>Tag an image with recognized objects and descriptive tags.  Returns tags and associated 
+confidences (probabilities).</p>
+
+<h2 id="request-parameters">Request parameters</h2>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>url</td>
+<td>URL of the content to be recognized.</td>
+</tr>
+<tr>
+<td>model</td>
+<td>Optional. Specify the type of model to process the images with. Currently must be &lsquo;default&rsquo;.</td>
+</tr>
+<tr>
+<td>local_id</td>
+<td>User-supplied identifier, returned with the result for each image for convenience when associating results with requests. If not supplied, the request URL is returned when available.</td>
+</tr>
+<tr>
+<td>select_classes</td>
+<td>Optional. Comma-separated list of class names (string).</td>
+</tr>
+</tbody></table>
+
+<p>Used to select a specific set of recognized tags to be returned in the response.  See <a href="#selecting-tags">Selecting tags</a> for details.</p>
+
+<h2 id="selecting-tags">Selecting tags</h2>
+
+<blockquote>
+<p>Get predictions for a specific set of tags using the <code class="prettyprint">select_classes</code> request param:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -H <span class="s2">"Authorization: Bearer &lt;access_token&gt;"</span> --data-urlencode <span class="s2">"url=http://www.clarifai.com/img/metro-north.jpg"</span>  -d <span class="s2">"select_classes=smile,frowning,laughing"</span> https://api.clarifai.com/v1/tag/
+</code></pre>
+
+<p>Normally we return the top recognized tags by predicted confidence.
+For some applications, the top tags are less useful than getting predictions for a specific set
+of tags.  We support this using the <code class="prettyprint">select_classes</code> request parameter.</p>
+
+<p>When <code class="prettyprint">select_classes</code> is provided in the request, only results for the requested classes are
+returned.  </p>
+
+<h2 id="response">Response</h2>
+
 <blockquote>
 <p>Example response with a single image.</p>
 </blockquote>
@@ -506,37 +563,6 @@ seconds before attempting another request.</p>
  </span><span class="s2">"status_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"All images in request have completed sucessfully."</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-
-<h3 id="http-request">HTTP Request</h3>
-
-<p><code class="prettyprint">GET https://api.clarifai.com/v1/tag/</code></p>
-
-<p>Tag an image with recognized objects and descriptive tags.  Returns tags and associated 
-confidences (probabilities).</p>
-
-<h3 id="request-parameters">Request parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>url</td>
-<td>URL of the content to be recognized.</td>
-</tr>
-<tr>
-<td>model</td>
-<td>Optional. Specify the type of model to process the images with. Currently must be &lsquo;default&rsquo;.</td>
-</tr>
-<tr>
-<td>local_id</td>
-<td>User-supplied identifier, returned with the result for each image for convenience when associating results with requests. If not supplied, the request URL is returned when available.</td>
-</tr>
-</tbody></table>
-
-<h3 id="response">Response</h3>
 
 <p>Image and video recognition results are returned in the <code class="prettyprint">results</code> array,
 one result per image. </p>
