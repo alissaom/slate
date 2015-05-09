@@ -4,16 +4,16 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>Clarifai Developer Documentation</title>
 
     <link href="stylesheets/screen.css" rel="stylesheet" type="text/css" media="screen" />
     <link href="stylesheets/print.css" rel="stylesheet" type="text/css" media="print" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
       <script src="javascripts/all.js" type="text/javascript"></script>
 
       <script>
         $(function() {
-          setupLanguages(["shell","ruby","python"]);
+          setupLanguages(["shell","python","nodejs"]);
         });
       </script>
   </head>
@@ -29,8 +29,8 @@
       <img src="images/logo.png" />
         <div class="lang-selector">
               <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
               <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="nodejs">nodejs</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -39,142 +39,172 @@
       <div id="toc">
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
+            <li><a href='http://developer.clarifai.com/accounts/signup/'>Get a Developer Account</a></li>
             <li><a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+        <h1 id="introduction">Introduction</h1>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>The Clarifai API is an image and video recognition service.</p>
 
-<p>This example API documentation page was created with <a href="http://github.com/tripit/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&rsquo;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>Give your applications the gift of sight.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">kittn</span>
+<p>TODO(madadam): more!</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre>
-<pre><code class="highlight shell"><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
+<p>The best way to understand the power of our API is to see it in action with our
+<a href="http://clarifai.com">Demo</a> where you can
+upload your own photos and video to see what&rsquo;s in them.</p>
 
-<blockquote>
-<p>Make sure to replace <code class="prettyprint">meowmeowmeow</code> with your API key.</p>
-</blockquote>
+<h1 id="getting-started">Getting Started</h1>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<p>First <a href="http://developer.clarifai.com/accounts/signup/'">create a developer account</a>.</p>
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<p>Once you&rsquo;re signed in, create an
+<a href="https://developer.clarifai.com/docs/applications">Application</a>. The application keys
+(Client ID and Client Secret) created during this step will later by copied into your client code.</p>
 
-<p><code class="prettyprint">Authorization: meowmeowmeow</code></p>
+<p>Time to start coding! The easiest way to get started is by using the clients available on the
+<a href="https://github.com/Clarifai">Clarifai Github account</a>. These clients wrap the basic REST API,
+and also provide utilities such as image resizing. Currently available for Python and node.js,
+other languages will be added soon.</p>
 
-<p><aside class="notice">
-You must replace <code class="prettyprint">meowmeowmeow</code> with your personal API key.
-</aside></p>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>After setting up the client, check out our quick
+<a href="https://developer.clarifai.com/docs/tutorial">Tutorial</a>.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">kittn</span>
+<h1 id="api-clients">API Clients</h1>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre>
-<pre><code class="highlight shell">curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre>
+<p>While the API can be accessed directly through the RESTful HTTP endpoints, several
+language-specific clients are available for easier integration.  These include:</p>
 
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre><code class="highlight json"><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Isis"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
+<ul>
+<li><a href="https://github.com/Clarifai/Clarifai_py">Python</a> (also our reference client)</li>
+<li><a href="https://github.com/Clarifai/clarifai-api-java">Java</a></li>
+<li><a href="https://github.com/Clarifai/Clarifai_nodejs">Nodejs</a></li>
+<li><a href="https://github.com/yazoglr/Claire">Swift</a> (Draft in development)</li>
+</ul>
 
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">GET http://example.com/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<p>Client-specific documentation is available in each repo, but the
+overall concepts regarding accessing the API and creating applications remains the same as if you
+were using REST endpoints.  Most clients take care of authentication, refreshing access tokens, and
+support image validation and resizing locally.</p>
+
+<h1 id="applications">Applications</h1>
+
+<p>The first step to using our API to is create an application.
+Each application has its own client credentials for <a href="#authentication">authentication</a>.</p>
+
+<p>You can create as many applications as you like.  All applications under a single account share
+the account&rsquo;s usage quota.</p>
+
+<h2 id="creating-applications">Creating Applications</h2>
+
+<p>In order to create applications you must first register for your Clarifai
+account. Once registered, login to your account. From the Account menu, you can now access the
+Application menu which shows a list of the current applications in your account.</p>
+
+<p>Simply click &ldquo;Create a new Application&rdquo; to do so and provide a name for the application. That&rsquo;s it!
+You&rsquo;re done creating an application.</p>
+
+<h2 id="using-applications">Using Applications</h2>
+
+<p>Now that you have created an application, click on the application name to view
+more details about the application. On the application details page you&rsquo;ll find your Client Id and
+Client Secret which is needed to gain access to Clarifai&rsquo;s API. As a convenience, we provide a quick
+way to generate an access token for the API on this page as well which can be used for direct
+authorization to the API. Please see the Authentication documentation for more details about using
+your credentials to access the API.</p>
+
+<p>If you would like to change the name of you application at any time, you may also do so on this
+detail page by selecting the edit button, typing in a new name, and saving the changes.</p>
+
+<h2 id="deleting-applications">Deleting Applications</h2>
+
+<p>Deleting an application is just as simple as creating one. From your list of
+applications first click on the application you would like to delete. At the bottom of the details
+page for the application, select the Delete button and it&rsquo;s gone!</p>
+
+<h1 id="authentication">Authentication</h1>
+
+<p>API requests are authenticated using OAuth2 Client Credentials.  The Client ID and Client Secret
+associated with your Application are used to generate temporary access tokens, which in turn
+are sent with each HTTP request to the API.</p>
+
+<p>The authentication parameters are:</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>client_id</td>
+<td>identifies which application is trying to access the service. This is unique and generated once for each Application in your account.</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>client_secret</td>
+<td>provides security when authorizing with the service. This is unique and generated once for each Application in your account.</td>
+</tr>
+<tr>
+<td>access_token</td>
+<td>the client_id and client_secret are needed to generate a unique access token that is then used to authorize your access to the service. This token expires regularly and can be renewed by generating a new access token periodically using the client_id and client_secret as described in the example below.</td>
 </tr>
 </tbody></table>
 
-<p><aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside></p>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre><code class="highlight ruby"><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>For more information regarding OAuth2, please see the <a href="http://tools.ietf.org/html/rfc6749">spec</a>.</p>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre><code class="highlight python"><span class="kn">import</span> <span class="nn">kittn</span>
+<h2 id="access-tokens">Access Tokens</h2>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre>
-<pre><code class="highlight shell">curl <span class="s2">"http://example.com/api/kittens/3"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+<blockquote>
+<p>Get an access token using client keys.</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -X POST -d <span class="s2">"grant_type=client_credentials"</span> -d <span class="s2">"client_id=&lt;client_id&gt;"</span> -d <span class="s2">"client_secret=&lt;client_secret&gt;"</span> https://api.clarifai.com/v1/token/
 </code></pre>
 
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>The client_id and client_secret can also be passed as header parameters:</p>
 </blockquote>
-<pre><code class="highlight json"><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Isis"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+<pre class="highlight shell"><code>curl -X POST -d <span class="s2">"grant_type=client_credentials"</span> https://&lt;client_id&gt;:&lt;client_secret&gt;@api.clarifai.com/v1/token/
+</code></pre>
+
+<blockquote>
+<p>Response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"U5j3rECLLZ86pWRjK35g489QJ4zrQI"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"expires_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">36000</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api_access"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"token_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bearer"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 
-<p>This endpoint retrieves a specific kitten.</p>
+<blockquote>
+<p>The access_token is used in subsequent API calls by sending it in the HTTP Authorization header:</p>
+</blockquote>
+<pre class="highlight plaintext"><code>"Authorization: Bearer &lt;access_token&gt;"
+</code></pre>
 
-<p><aside class="warning">If you&rsquo;re not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside></p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code class="prettyprint">GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
+<blockquote>
+<p>For example, a tag request passing the access token looks like:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -H <span class="s2">"Authorization: Bearer &lt;access_token&gt;"</span> https://api.clarifai.com/v1/tag/?url<span class="o">=</span>http://www.clarifai.com/img/metro-north.jpg
+</code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.clarifai.com/v1/token/</code></p>
+
+<p>To generate access tokens, first create an <a href="#applications">Application</a> in your account, if you
+haven&rsquo;t already.  This generates client credentials for authentication.</p>
+
+<p>The token endpoint is used to exchange your client credentials (<code class="prettyprint">client_id</code> and <code class="prettyprint">client_secret</code>)
+for an access token.</p>
+
+<h3 id="request-parameters">Request parameters</h3>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -182,65 +212,559 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the cat to retrieve</td>
+<td>grant_type</td>
+<td>Required.  Authentication token type. Allowable values: &ldquo;client_credentials&rdquo;.</td>
 </tr>
 </tbody></table>
 
-          <h1 id='errors'>Errors</h1>
-<p><aside class="notice">This error section is stored in a separate file in <code class="prettyprint">includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the <code class="prettyprint">includes</code> folder and add them to the top of your <code class="prettyprint">index.md</code>&rsquo;s frontmatter. Files are included in the order listed.</aside></p>
+<h2 id="token-expiration-and-refresh">Token expiration and refresh</h2>
 
-<p>The Kittn API uses the following error codes:</p>
+<p>Each access token is valid for a limited time window, which is reported in the
+<code class="prettyprint">expires_in</code> field of the initial token response.</p>
+
+<p>Requests received with an expired token will generate an HTTP 401 error code, and the
+<a href="#status-codes">status_code</a> <code class="prettyprint">TOKEN_EXPIRED</code>.</p>
+
+<h1 id="requests-and-responses">Requests and Responses</h1>
+
+<p>GET
+Some of the endpoints support GET requests for convenient access to the API. Most methods however support POST, so it is recommended to utilize POST methods whenever possible.</p>
+
+<p>POST
+Other endpoints can accept POST requests which can be in either JSON or multipart-form formats. When sending image bytes, it is highly recommended to use the multipart-form POST as it is much more efficient than json which requires base64 encoding of the images.</p>
+
+<h2 id="headers">Headers</h2>
+
+<p>When using either GET or POST requests, the Authorization header must be provided:</p>
+
+<p>&ldquo;Authorization: Bearer <access_token>&rdquo;</p>
+
+<h1 id="data-formats">Data Formats</h1>
+
+<p>The Clarifai API supports multiple input formats for data as described below.</p>
+
+<h2 id="url">url</h2>
+
+<p>If you would like to process an image that is hosted at an existing publically accessible url,
+then you can simply provide that url as an image input format. This url is downloaded on our servers
+and then processed, therefore it must contain valid image data and be accessible to public servers.
+If there in an error downloading the image or the format is not correct, an error response will be
+returned. Note: the url must be url-encoded in many cases. This is to ensure all the necessary url
+parameters of the original url are passed correctly to the server so that the data can be
+downloaded.</p>
+
+<h2 id="encoded_data">encoded_data</h2>
+
+<p>This format is for passing the raw bytes of a compressed image (such as JPEG or PNG) with the
+request. This is convenient for processing local files with the API by transferring image bytes
+directly in the request. This input is decoded as a string of bytes on the server side for several
+supported image formats. This input format is ONLY supported by POST methods because the raw bytes
+of an image may not be encodable in a GET method. The encoded_data should be send via a
+multipart-form POST for efficiency reasons.</p>
+
+<aside class="warning">
+Warning: Using encoded_data with JSON
+
+If you use the encoded_data image format with a JSON request, you MUST base64 encode the image
+before sending the bytes. Otherwise the JSON request will not be parsed properly. Sending the
+encoded_data via JSON is therefore NOT RECOMMENDED because base64 encoding adds additional overhead
+on both the client/server as well as additional network traffic. Therefore, we strongly recommend
+sending encoded_data as a multipart-form as described above. We may not support JSON encoded_data
+uploads in the future.
+</aside>
 
 <table><thead>
 <tr>
-<th>Error Code</th>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<h1 id="responses">Responses</h1>
+
+<p>Responses from the API are always in JSON format. Each response has the following top-level structure:</p>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"status_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"status_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"All images in request have completed. "</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">...something...</span><span class="w"> </span><span class="err">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>The top-level fields are:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status_code</td>
+<td>a string summarizing request status. In addition HTTP status code, provides more detail about the response. See <a href="#status-codes">Status Codes</a> for details.</td>
+</tr>
+<tr>
+<td>status_msg</td>
+<td>a description of the status code for this request. This can provide more detail when a request has an error.</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>extra information such as the type of model used to process a request is returned in the meta field. This must be a url safe string.</td>
+</tr>
+<tr>
+<td>results</td>
+<td>the data sent back with the response. This can be a dictionary of information for information endpoints or an array of results, one for each image in the request. The value here depends on the endpoint and is described in more detail in the docs for each endpoint.</td>
+</tr>
+</tbody></table>
+
+<h1 id="usage-quota-and-throttling">Usage Quota and Throttling</h1>
+
+<p>Each plan has a defined usage quota for access to the API. Once you usage exceeds this maximum,
+additional charges may apply. The usage of the API is monitored on a per operation and per image
+basis. For example: if you provide a single image for tagging, that counts as one transaction. If
+you request multiple operations for a single image, then multiple transactions occur, one for each
+operation. Similarly, if multiple images are provided in a batch, then one transaction per image is
+accumulated.</p>
+
+<h2 id="rate-limits">Rate Limits</h2>
+
+<p>In addition to your overall usage, there are rate limits in place to ensure fair use of our service.
+You can view these on your Account Usage Page. If you exceed the limits defined there you will be
+throttled to prevent overuse of the API and allow others to benefit from the service.</p>
+
+          <h1 id="status-codes">Status codes</h1>
+
+<p>Clarifai Vision API responses contain status codes at the top-level request, in addition
+ to per-image status codes for multi-image batch requests or video requests.</p>
+
+<h2 id="request-level-status-codes">Request-level status codes</h2>
+
+<table><thead>
+<tr>
+<th>Status Code</th>
+<th>HTTP Status Code</th>
 <th>Meaning</th>
 </tr>
 </thead><tbody>
 <tr>
+<td>OK</td>
+<td>200</td>
+<td>Request succeeded.</td>
+</tr>
+<tr>
+<td>ALL_ERROR</td>
 <td>400</td>
-<td>Bad Request &ndash; Your request sucks</td>
+<td>All images in the request failed.</td>
 </tr>
 <tr>
+<td>PARTIAL_ERROR</td>
+<td>400</td>
+<td>Some images in request have failed. Please review the error messages per image.</td>
+</tr>
+<tr>
+<td>TOKEN_EXPIRED</td>
 <td>401</td>
-<td>Unauthorized &ndash; Your API key is wrong</td>
+<td>Token has expired, you must generate a new access token. See <a href="#access-tokens">Access Tokens</a>.</td>
 </tr>
 <tr>
-<td>403</td>
-<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+<td>TOKEN_APP_INVALID</td>
+<td>401</td>
+<td>Application for this token is not valid. Please ensure that you are using ID and SECRET from same application.</td>
 </tr>
 <tr>
-<td>404</td>
-<td>Not Found &ndash; The specified kitten could not be found</td>
+<td>TOKEN_INVALID</td>
+<td>401</td>
+<td>Token is not valid. Please use valid tokens for a application in your account.</td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
+<td>TOKEN_NONE</td>
+<td>401</td>
+<td>Authentication credentials were not provided in request.</td>
 </tr>
 <tr>
-<td>406</td>
-<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
+<td>TOKEN_NO_SCOPE</td>
+<td>401</td>
+<td>Token does not have the required scope to access resources.</td>
+</tr>
+</tbody></table>
+
+<h2 id="image-level-status-codes">Image-level status codes</h2>
+
+<p>For multi-image batch requests and video requests.</p>
+
+<table><thead>
+<tr>
+<th>Status Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>OK</td>
+<td>Image loading failed, see results for details.</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone &ndash; The kitten requested has been removed from our servers</td>
+<td>CLIENT_ERROR</td>
+<td>Image loading failed, see results for details.</td>
 </tr>
 <tr>
-<td>418</td>
-<td>I&rsquo;m a teapot</td>
+<td>SERVER_ERROR</td>
+<td>Image failed to process, see results for details.</td>
+</tr>
+</tbody></table>
+
+          <h1 id="tags">Tags</h1>
+
+<blockquote>
+<p>Tag a single image by URL:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -H <span class="s2">"Authorization: Bearer &lt;access_token&gt;"</span> https://api.clarifai.com/v1/tag/?url<span class="o">=</span>http://www.clarifai.com/img/metro-north.jpg
+
+</code></pre>
+
+<blockquote>
+<p>Or using a POST request:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -H <span class="s2">"Authorization: Bearer &lt;access_token&gt;"</span> --data-urlencode <span class="s2">"url=http://www.clarifai.com/img/metro-north.jpg"</span>  https://api.clarifai.com/v1/tag/
+</code></pre>
+
+<blockquote>
+<p>Tag multiple images in a batch request, sending URLs:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -H <span class="s2">"Authorization: Bearer &lt;access_token&gt;"</span> --data-urlencode <span class="s2">"url=http://www.clarifai.com/img/metro-north.jpg"</span> -d <span class="s2">"url=http://www.clarifai.com/img/metro-north.jpg"</span>  https://api.clarifai.com/v1/tag/
+</code></pre>
+
+<blockquote>
+<p>Tag multiple images in a batch request, uploading image files from local disk:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -H <span class="s2">"Authorization: Bearer &lt;access_token&gt;"</span> -F <span class="s2">"encoded_data=@/path/to/example.jpeg"</span> -F <span class="s2">"encoded_data=@/path/to/another-img.jpeg"</span> https://api.clarifai.com/v1/tag/
+</code></pre>
+
+<blockquote>
+<p>Example response with a single image.</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+   </span><span class="s2">"tag"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+       </span><span class="s2">"config"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cf0267260d65c1312cac67ab2474dbdc"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"model"</span><span class="p">:</span><span class="w"> </span><span class="s2">"default"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"status_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+       </span><span class="s2">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mf">1414364476.483851</span><span class="p">}},</span><span class="w">
+ </span><span class="s2">"results"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+     </span><span class="p">{</span><span class="s2">"docid_str"</span><span class="p">:</span><span class="w"> </span><span class="s2">"31fdb2316ff87fb5d747554ba5267313"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"local_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.clarifai.com/img/metro-north.jpg"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"tag"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"classes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                  </span><span class="s2">"train"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"subway"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"railroad"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"railway"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"station"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"rail"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"transportation"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"urban"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"underground"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"night"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"traffic"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"commuter"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"bridge"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"city"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"road"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"national park"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"public"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"platform"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"street"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"blur"</span><span class="p">],</span><span class="w">
+              </span><span class="s2">"probs"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                  </span><span class="mf">0.9994779825210571</span><span class="p">,</span><span class="w">
+                  </span><span class="mf">0.9983398914337158</span><span class="p">,</span><span class="w">
+                  </span><span class="mf">0.9967546463012695</span><span class="p">,</span><span class="w">
+                  </span><span class="mf">0.9949972033500671</span><span class="p">,</span><span class="w">
+                  </span><span class="mf">0.9938348531723022</span><span class="p">,</span><span class="w">
+                  </span><span class="mf">0.9938316345214844</span><span class="p">,</span><span class="w">
+                  </span><span class="mf">0.989970326423645</span><span class="p">,</span><span class="w">
+                  </span><span class="mf">0.9786827564239502</span><span class="p">,</span><span class="w">
+                  </span><span class="mf">0.9764524698257446</span><span class="p">,</span><span class="w">
+                  </span><span class="mf">0.9714784026145935</span><span class="p">,</span><span class="w">
+                  </span><span class="mf">0.9520049095153809</span><span class="p">,</span><span class="w">
+                  </span><span class="mf">0.9501165151596069</span><span class="p">,</span><span class="w">
+                  </span><span class="mf">0.9497720003128052</span><span class="p">,</span><span class="w">
+                  </span><span class="mf">0.9494657516479492</span><span class="p">,</span><span class="w">
+                  </span><span class="mf">0.9481779336929321</span><span class="p">,</span><span class="w">
+                  </span><span class="mf">0.9384146928787231</span><span class="p">,</span><span class="w">
+                  </span><span class="mf">0.938301682472229</span><span class="p">,</span><span class="w">
+                  </span><span class="mf">0.9342441558837891</span><span class="p">,</span><span class="w">
+                  </span><span class="mf">0.9231494665145874</span><span class="p">,</span><span class="w">
+                  </span><span class="mf">0.9211686849594116</span><span class="p">]</span><span class="w">
+              </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"status_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="p">}</span><span class="w">
+ </span><span class="p">],</span><span class="w">
+ </span><span class="s2">"status_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"status_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"All images in request have completed sucessfully."</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://api.clarifai.com/v1/tag/</code></p>
+
+<p>Tag an image with recognized objects and descriptive tags.  Returns tags and associated 
+confidences (probabilities).</p>
+
+<h3 id="request-parameters">Request parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>url</td>
+<td>URL of the content to be recognized.</td>
 </tr>
 <tr>
-<td>429</td>
-<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slown down!</td>
+<td>model</td>
+<td>Optional. Specify the type of model to process the images with. Currently must be &lsquo;default&rsquo;.</td>
 </tr>
 <tr>
-<td>500</td>
-<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+<td>local_id</td>
+<td>User-supplied identifier, returned with the result for each image for convenience when associating results with requests. If not supplied, the request URL is returned when available.</td>
+</tr>
+</tbody></table>
+
+<h3 id="response">Response</h3>
+
+<p>Image and video recognition results are returned in the <code class="prettyprint">results</code> array,
+one result per image. </p>
+
+<p>Each result
+has its own <code class="prettyprint">status_code</code> and <code class="prettyprint">status_msg</code> which allows for individual images in a batch to succeed
+even if some fail. </p>
+
+<p>Notable response parameters:</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>docid_str</td>
+<td>A unique string identifying each result. Used when sending <a href="#feedback">feedback</a>.</td>
 </tr>
 <tr>
-<td>503</td>
-<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+<td>local_id</td>
+<td>User-supplied identifier, echoed back in each result if supplied in the request, or the URL of the image is returned if available.</td>
+</tr>
+<tr>
+<td>classes</td>
+<td>An array of tags recognized from this image or video segment.</td>
+</tr>
+<tr>
+<td>probs</td>
+<td>An array of confidences (probabilities) associated with the tags returned in <code class="prettyprint">classes</code>.</td>
+</tr>
+</tbody></table>
+
+<h1 id="feedback">Feedback</h1>
+
+<h2 id="http-request">HTTP Request</h2>
+
+<p><code class="prettyprint">GET|POST https://api.clarifai.com/v1/feedback/</code></p>
+
+<p>This endpoint provides the ability to provide feedback to the API about images that were previously processed, for example to correct errors made by the recognition engine.</p>
+
+<p>We highly encouraged integrating feedback into your application as this dramatically improves the system over time. You or your users can correct errors made by the recognizer. For example, if the system returned &ldquo;cat&rdquo; for an image of a dog, you can send a message with add_tags=&ldquo;dog&rdquo;, remove_tags=&ldquo;cat&rdquo;.</p>
+
+<p>Requests to the feedback endpoint can be made with either http GET or POST methods.</p>
+
+<aside class="notice">
+Feedback requests are always free. Vote early, vote often!
+</aside>
+
+<aside class="warning">
+Abuse by providing poor quality or incorrect feedback, may result in account suspension or
+termination, as it can affect the service for other users.
+</aside>
+
+<h2 id="request-parameters">Request parameters</h2>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>docids</td>
+<td>Comma-separated list of docids (strings) that identifies which images/video the feedback applies to. Use the value of the <code class="prettyprint">docid_str</code> field in the tag response.</td>
+</tr>
+<tr>
+<td>url</td>
+<td>Url that identifies the image/video the feedback applies to. Multiple urls can be sent, but since URLs can contain commas, each must be sent as a separate HTTP request param.</td>
+</tr>
+<tr>
+<td>add_tags</td>
+<td>comma-separated list of tags for positive feedback. UTF-8 encoded.</td>
+</tr>
+<tr>
+<td>remove_tags</td>
+<td>comma-separated list of tags for negative feedback. UTF-8 encoded.</td>
+</tr>
+<tr>
+<td>similar_docids</td>
+<td>comma-separated list of docids that are similar to the input docids.</td>
+</tr>
+<tr>
+<td>dissimilar_docids</td>
+<td>comma-separated list of docids that are dissimilar to the input docids.</td>
+</tr>
+<tr>
+<td>search_click</td>
+<td>comma-separated list of search terms that generated clicks on a set of docids.</td>
+</tr>
+</tbody></table>
+
+<p>One and only one parameter in the feedback request must identify the image: either <code class="prettyprint">url</code> or
+<code class="prettyprint">docids</code>.</p>
+
+<h2 id="positive-feedback">Positive feedback</h2>
+
+<blockquote>
+<p>Add tags or give positive feedback for tags to a docid:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -H <span class="s2">"Authorization: Bearer &lt;access_token&gt;"</span> -d <span class="s2">"docids=78c742b9dee940c8cf2a06f860025141"</span> -d <span class="s2">"add_tags=car,dashboard,driving"</span>  https://api.clarifai.com/v1/feedback/
+</code></pre>
+
+<blockquote>
+<p>Add tags, specifying the image by URL instead of docid:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -H <span class="s2">"Authorization: Bearer &lt;access_token&gt;"</span> --data-urlencode <span class="s2">"url=http://www.clarifai.com/img/metro-north.jpg"</span> -d <span class="s2">"add_tags=train station,railway station"</span>  https://api.clarifai.com/v1/feedback/
+</code></pre>
+
+<blockquote>
+<p>Suggest tags for multiple images in a single request, with a comma-separated list of docids:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -H <span class="s2">"Authorization: Bearer &lt;access_token&gt;"</span> -d <span class="s2">"docids=78c742b9dee940c8cf2a06f860025141,5849206sdee940c8cf2a06f8792384059"</span>  -d <span class="s2">"search_click=cat,hat,mat"</span> https://api.clarifai.com/v1/feedback/
+</code></pre>
+
+<p>Confirm correct and useful tags, or suggest missing tags, using the <code class="prettyprint">add_tags</code> field.</p>
+
+<p>If the user believes additional tags are relevant to the given image, they can be provided in the
+<code class="prettyprint">add_tags</code> argument. <code class="prettyprint">add_tags</code> accepts a comma-separated list of tags in UTF-8 encoding.</p>
+
+<h2 id="negative-feedback-on-errors">Negative feedback on errors</h2>
+
+<blockquote>
+<p>Remove tags or give negative feedback for tags to a docid:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -H <span class="s2">"Authorization: Bearer &lt;access_token&gt;"</span> -d <span class="s2">"docids=78c742b9dee940c8cf2a06f860025141"</span> -d <span class="s2">"remove_tags=sky,clean,red"</span>  https://api.clarifai.com/v1/feedback/
+</code></pre>
+
+<p>If the user believes tags were are not relevant to the given image, they can be provided in the
+<code class="prettyprint">remove_tags</code> argument. <code class="prettyprint">remove_tags</code> accepts a comma-separated list of tags in UTF-8 encoding.</p>
+
+<h2 id="suggest-similar-items">Suggest similar items</h2>
+
+<blockquote>
+<p>Add similar docids for a given docid:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -H <span class="s2">"Authorization: Bearer &lt;access_token&gt;"</span> -d <span class="s2">"docids=78c742b9dee940c8cf2a06f860025141"</span> -d <span class="s2">"similar_docids=fc957ec10abcc0f4507475827626200a"</span> https://api.clarifai.com/v1/feedback/
+</code></pre>
+
+<p>If there is a notion of similarity between images, this can be fed back to the system by providing
+an input set of <code class="prettyprint">docids</code> and <code class="prettyprint">similar_docids</code>, a comma-separated list of docids that are similar
+to the input docids.</p>
+
+<h2 id="suggest-dissimilar-items">Suggest dissimilar items</h2>
+
+<blockquote>
+<p>Add dissimilar docids for a given docid:</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -H <span class="s2">"Authorization: Bearer &lt;access_token&gt;"</span> -d <span class="s2">"docids=78c742b9dee940c8cf2a06f860025141"</span> -d <span class="s2">"dissimilar_docids=acd57ec10abcc0f4507475827626785f"</span> https://api.clarifai.com/v1/feedback/
+</code></pre>
+
+<p>If there is a notion of similarity between images, this can be fed back to the system by providing
+an input set of <code class="prettyprint">docids</code> and <code class="prettyprint">dissimilar_docids</code>, a comma-separated list of docids that are
+dissimilar to the input docids.</p>
+
+<h2 id="search-result-click-feedback">Search result click feedback</h2>
+
+<blockquote>
+<p>Provide feedback on which items were clicked after searching for the specified tags.</p>
+</blockquote>
+<pre class="highlight shell"><code>curl -H <span class="s2">"Authorization: Bearer &lt;access_token&gt;"</span> -d <span class="s2">"docids=78c742b9dee940c8cf2a06f860025141"</span>  -d <span class="s2">"search_click=cat"</span> https://api.clarifai.com/v1/feedback/
+</code></pre>
+
+<p>This is useful when showing search results in response to a query, to provide feedback that the
+search result was relevant to the query. The <code class="prettyprint">docids</code> parameter identifies the image that was
+clicked, and the <code class="prettyprint">search_click</code> parameter is a comma-separated list of search terms that
+generated the search result.</p>
+
+<h2 id="feedback-response">Feedback response</h2>
+
+<blockquote>
+<p>Example feedback response:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"status_code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OK"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status_msg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Feedback sucessfully recorded. "</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>The Feedback response contains <code class="prettyprint">status_code</code> and <code class="prettyprint">status_msg</code>.</p>
+
+<h1 id="info-and-api-limits">Info and API limits</h1>
+
+<p>The API enforces certain limits on requests.</p>
+
+<p>For example, the API enforces limits on the size of images that can be processed.
+Too small of an image would result in poor recognition results due to low image resolution, and
+too large of an image slows down processing unnecessarily due to network transfer and resizing
+operations on the server.</p>
+
+<h2 id="info">Info</h2>
+
+<blockquote>
+<p>Example response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="s2">"embed_allowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"max_video_batch_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"max_image_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"max_batch_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">128</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"min_image_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">224</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"max_image_bytes"</span><span class="p">:</span><span class="w"> </span><span class="mi">10485760</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"max_video_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">1024</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"min_video_size"</span><span class="p">:</span><span class="w"> </span><span class="mi">224</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"max_video_bytes"</span><span class="p">:</span><span class="w"> </span><span class="mi">104857600</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"api_version"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w">
+ </span><span class="s2">"max_video_duration"</span><span class="p">:</span><span class="w"> </span><span class="mi">1800</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<p>The <code class="prettyprint">/info</code> endpoint returns current API details including limits and thresholds on requests.</p>
+
+<p>The response includes:</p>
+
+<table><thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>max_batch_size</td>
+<td>The maximum number of images allowed to process in one bach request.</td>
+</tr>
+<tr>
+<td>max_image_size</td>
+<td>The maximum allowed image size (on the minimum dimension).</td>
+</tr>
+<tr>
+<td>min_image_size</td>
+<td>The minimum allowed image size (on the minimum dimension).</td>
 </tr>
 </tbody></table>
 
@@ -248,8 +772,8 @@ Remember — a happy kitten is an authenticated kitten!
       <div class="dark-box">
           <div class="lang-selector">
                 <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
                 <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="nodejs">nodejs</a>
           </div>
       </div>
     </div>
