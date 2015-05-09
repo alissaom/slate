@@ -21,10 +21,6 @@ search: true
 
 The Clarifai API is an image and video recognition service.
 
-Give your applications the gift of sight.
-
-TODO(madadam): more!
-
 The best way to understand the power of our API is to see it in action with our
 [Demo](http://clarifai.com) where you can
 upload your own photos and video to see what's in them.
