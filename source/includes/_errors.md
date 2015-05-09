@@ -1,20 +1,28 @@
-# Errors
+# Status codes
 
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
+Clarifai Vision API responses contain status codes at the top-level request, in addition
+ to per-image status codes for multi-image batch requests or video requests.
 
-The Kittn API uses the following error codes:
+## Request-level status codes
+
+Status Code | HTTP Status Code | Meaning
+---------- | ------- | ----------
+OK | 200 | Request succeeded.
+ALL_ERROR | 400 | All images in the request failed.
+PARTIAL_ERROR | 400 | Some images in request have failed. Please review the error messages per image.
+TOKEN_EXPIRED | 401 | Token has expired, you must generate a new access token. See [Access Tokens](#access-tokens).
+TOKEN_APP_INVALID | 401 | Application for this token is not valid. Please ensure that you are using ID and SECRET from same application.
+TOKEN_INVALID | 401 | Token is not valid. Please use valid tokens for a application in your account.
+TOKEN_NONE | 401 | Authentication credentials were not provided in request.
+TOKEN_NO_SCOPE | 401 | Token does not have the required scope to access resources.
 
 
-Error Code | Meaning
----------- | -------
-400 | Bad Request -- Your request sucks
-401 | Unauthorized -- Your API key is wrong
-403 | Forbidden -- The kitten requested is hidden for administrators only
-404 | Not Found -- The specified kitten could not be found
-405 | Method Not Allowed -- You tried to access a kitten with an invalid method
-406 | Not Acceptable -- You requested a format that isn't json
-410 | Gone -- The kitten requested has been removed from our servers
-418 | I'm a teapot
-429 | Too Many Requests -- You're requesting too many kittens! Slow down!
-500 | Internal Server Error -- We had a problem with our server. Try again later.
-503 | Service Unavailable -- We're temporarially offline for maintanance. Please try again later.
+## Image-level status codes
+
+For multi-image batch requests and video requests.
+
+Status Code |  Meaning
+---------- | ----------
+OK | Image loading failed, see results for details.
+CLIENT_ERROR | Image loading failed, see results for details.
+SERVER_ERROR | Image failed to process, see results for details. 
