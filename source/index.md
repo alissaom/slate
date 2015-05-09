@@ -22,13 +22,13 @@ search: true
 The Clarifai API is an image and video recognition service.
 
 The best way to understand the power of our API is to see it in action with our
-[Demo](http://clarifai.com) where you can
+[demo](http://clarifai.com) where you can
 upload your own photos and video to see what's in them.
 
 
 # Getting Started
 
-First [create a developer account](http://developer.clarifai.com/accounts/signup/').
+First [create a developer account](http://developer.clarifai.com/accounts/signup/).
 
 Once you're signed in, create an
 [Application](https://developer.clarifai.com/docs/applications). The application keys
